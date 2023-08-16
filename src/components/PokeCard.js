@@ -40,9 +40,9 @@ export default function PokeCard() {
     <h1>Pokemon Search</h1>    
     <form onSubmit={handleSubmit}>
         <input type="text" value={searchPokemons} onChange={handleChange}></input>
-        example: eevee
         <button type="submit">Search</button>
         <button type="button" onClick={onClear}>Clear</button>
+        <p>example: try searcing for eevee</p>
     </form>
     <div>{pokemonDetails}</div>
     </>
