@@ -50,7 +50,7 @@ export default function PokeCard() {
         <button type="button" onClick={onClear}>
           Clear
         </button>
-        <p>example: try searcing for eevee</p>
+        <p>example: try searching for eevee</p>
       </form>
       <div>{pokemonDetails}</div>
     </>
