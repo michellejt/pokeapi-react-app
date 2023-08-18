@@ -1,50 +1,58 @@
 import React, { useState, useEffect } from "react";
 
 export default function PokeCard() {
+  const [searchPokemons, setSearchPokemons] = useState([]);
+  const [pokemonData, setPokemonData] = useState([]);
 
-    const [searchPokemons, setSearchPokemons] = useState([]);
-    const [pokemonData, setPokemonData] = useState([]);
+  function handleChange(event) {
+    // Get the value of the input element
+    let value = event.target.value;
+    // Convert it to lowercase
+    let lowercaseValue = value.toLowerCase();
+    // Set the state with the lowercase value
+    setSearchPokemons(lowercaseValue);
+  }
+  function handleSubmit(event) {
+    event.preventDefault();
+    const url = `https://pokeapi.co/api/v2/pokemon/${searchPokemons}`;
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => setPokemonData([data])); // set the data object to the new state variable - wrapping the object in an array so we can map
+  }
 
-    function handleChange(event) {
-        setSearchPokemons(event.target.value);
-     }
+  const onClear = () => {
+    setPokemonData([]); //setting back to blank arrary (eg.. not as a string "")
+    setSearchPokemons([]); //setting the state back to an empty array
+  };
 
-     function handleSubmit(event) {
-        event.preventDefault();
-        const url = `https://pokeapi.co/api/v2/pokemon/${searchPokemons}`;
-        fetch(url)
-          .then((res) => res.json())
-          .then(data => setPokemonData([data])) // set the data object to the new state variable - wrapping the object in an array so we can map   
-        }
+  // Use useEffect to log pokemonData whenever it changes
+  useEffect(() => {
+    console.log("data", pokemonData);
+  }, [pokemonData]);
 
-    const onClear = () => { 
-        setPokemonData([]); //setting back to blank arrary (eg.. not as a string "")
-        setSearchPokemons([]); //setting the state back to an empty array
-    };
-    
-    // Use useEffect to log pokemonData whenever it changes
-    useEffect(() => {
-    console.log('data', pokemonData)
-    }, [pokemonData])
-
-    
-    const pokemonDetails = pokemonData?.map(({name, sprites}) =>
+  const pokemonDetails = pokemonData?.map(({ name, sprites }) => (
     <>
-    <h1>{name}</h1>
-    <img src={sprites?.front_default} alt={name} />
+      <h1>{name}</h1>
+      <img src={sprites?.front_default} alt={name} />
     </>
-    )     
+  ));
 
-    return (
+  return (
     <>
-    <h1>Pokemon Search</h1>    
-    <form onSubmit={handleSubmit}>
-        <input type="text" value={searchPokemons} onChange={handleChange}></input>
+      <h1>Pokemon Search</h1>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={searchPokemons}
+          onChange={handleChange}
+        ></input>
         <button type="submit">Search</button>
-        <button type="button" onClick={onClear}>Clear</button>
+        <button type="button" onClick={onClear}>
+          Clear
+        </button>
         <p>example: try searcing for eevee</p>
-    </form>
-    <div>{pokemonDetails}</div>
+      </form>
+      <div>{pokemonDetails}</div>
     </>
-    );
- }
+  );
+}
