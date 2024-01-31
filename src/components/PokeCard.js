@@ -1,58 +1,42 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-export default function PokeCard() {
-  const [searchPokemons, setSearchPokemons] = useState([]);
-  const [pokemonData, setPokemonData] = useState([]);
-
-  function handleChange(event) {
-    // Get the value of the input element
-    let value = event.target.value;
-    // Convert it to lowercase
-    let lowercaseValue = value.toLowerCase();
-    // Set the state with the lowercase value
-    setSearchPokemons(lowercaseValue);
-  }
-  function handleSubmit(event) {
-    event.preventDefault();
-    const url = `https://pokeapi.co/api/v2/pokemon/${searchPokemons}`;
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => setPokemonData([data])); // set the data object to the new state variable - wrapping the object in an array so we can map
-  }
-
-  const onClear = () => {
-    setPokemonData([]); //setting back to blank arrary (eg.. not as a string "")
-    setSearchPokemons([]); //setting the state back to an empty array
-  };
-
-  // Use useEffect to log pokemonData whenever it changes
-  useEffect(() => {
-    console.log("data", pokemonData);
-  }, [pokemonData]);
-
-  const pokemonDetails = pokemonData?.map(({ name, sprites }) => (
-    <>
-      <h1>{name}</h1>
-      <img src={sprites?.front_default} alt={name} />
-    </>
-  ));
-
+const PokeCard = ({ pokemonData }) => {
   return (
-    <>
-      <h1>Pokemon Search</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={searchPokemons}
-          onChange={handleChange}
-        ></input>
-        <button type="submit">Search</button>
-        <button type="button" onClick={onClear}>
-          Clear
-        </button>
-        <p>example: try searching for eevee</p>
-      </form>
-      <div>{pokemonDetails}</div>
-    </>
+    <div className="card">
+      <div className="card__foil"></div>
+      {pokemonData?.map(({ name, sprites, types, stats, weight }) => (
+        <>
+          <div className="card__header">{name}</div>
+          <div className="card__body" key="{name}">
+            <img
+              className="card__image"
+              src={sprites?.other["official-artwork"].front_default}
+              alt={name}
+            />
+            <div className="card__details">
+              <p>
+                <strong>Type:</strong>
+                {/* there could be more than one type, so we'll iterate over them to display them all */}
+                {types.map((type, index) => (
+                  <li key={index}>{type?.type.name}</li>
+                ))}
+              </p>
+              <p>
+                <strong>Stats:</strong>
+                {/* there could be more than one stat, so we'll iterate over them to display them all */}
+                {stats.map((stats, index) => (
+                  <li key={index}>{stats?.stat.name}</li>
+                ))}
+              </p>
+              <p>
+                <strong>Weight:</strong>
+                {weight}
+              </p>
+            </div>
+          </div>
+        </>
+      ))}
+    </div>
   );
-}
+};
+export default PokeCard;
