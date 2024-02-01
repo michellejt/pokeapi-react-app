@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PokeCard from "./PokeCard";
+import { ArrowPathIcon } from "@heroicons/react/24/solid";
 
 export default function PokeSearch() {
   const [searchPokemons, setSearchPokemons] = useState([]);
@@ -18,7 +19,21 @@ export default function PokeSearch() {
     const url = `https://pokeapi.co/api/v2/pokemon/${searchPokemons}`;
     fetch(url)
       .then((res) => res.json())
-      .then((data) => setPokemonData([data])); // set the data object to the new state variable - wrapping the object in an array so we can map
+      .then((pokemonData) => {
+        const speciesUrl = pokemonData.species.url;
+
+        fetch(speciesUrl)
+          .then((res) => res.json())
+          .then((speciesData) => {
+            // Combine data from both requests
+            const combinedData = { ...pokemonData, species: speciesData };
+            setPokemonData([combinedData]);
+          })
+          .catch((error) =>
+            console.error("Error fetching species data", error)
+          );
+      })
+      .catch((error) => console.error("Error fetching Pokemon data", error));
   }
 
   const onClear = () => {
@@ -64,13 +79,13 @@ export default function PokeSearch() {
               type="button"
               onClick={onClear}
             >
-              🔁
+              <ArrowPathIcon className="h-6 w-6 text-blue-500" />
             </button>
           </div>
         </form>
       </div>
       <div
-        className="right w-full md:w-3/5 py-6 text-center flex items-center justify-center"
+        className="right w-full md:w-3/5 py-6 text-left flex items-center justify-center"
         data-pg-collapsed
       >
         <PokeCard pokemonData={pokemonData} />
