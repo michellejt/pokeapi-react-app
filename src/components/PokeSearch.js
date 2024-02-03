@@ -7,16 +7,12 @@ export default function PokeSearch() {
   const [pokemonData, setPokemonData] = useState([]);
 
   function handleChange(event) {
-    // Get the value of the input element
-    let value = event.target.value;
-    // Convert it to lowercase
-    let lowercaseValue = value.toLowerCase();
-    // Set the state with the lowercase value
-    setSearchPokemons(lowercaseValue);
+    // Set the state with the value as is (including uppercase)
+    setSearchPokemons(event.target.value);
   }
   function handleSubmit(event) {
     event.preventDefault();
-    const url = `https://pokeapi.co/api/v2/pokemon/${searchPokemons}`;
+    const url = `https://pokeapi.co/api/v2/pokemon/${searchPokemons.toLowerCase()}`;
     fetch(url)
       .then((res) => res.json())
       .then((pokemonData) => {

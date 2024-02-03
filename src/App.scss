@@ -51,6 +51,38 @@ body {
     color: var(--color-2);
   }
 
+  &__type {
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+  }
+
+  &__type span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    //border-radius: 50%;//use tailwind class
+    margin-right: 2px;
+  }
+
+  &__type img {
+    padding: 5px;
+    object-fit: cover;
+  }
+
+  &__hp {
+    text-align: center;
+    background-color: #fff;
+    border-radius: 20px; /* Adjust the value based on your preference for the curved background */
+    padding: 10px; /* Adjust the padding as needed */
+    margin: 10px auto; /* Center the element horizontally */
+    display: inline-block;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
   &__foil {
     position: absolute;
     inset: 0;
