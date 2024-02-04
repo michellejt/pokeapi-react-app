@@ -91,6 +91,7 @@ const renderPokemonData = (pokemonData) => {
           alt={name}
         />
         <div className="card__details">
+          <p>{species?.color.name}</p>
           {renderTypes(types)}
           <p>{species.flavor_text_entries[1].flavor_text}</p>
           <div className="card__hp">
@@ -104,8 +105,11 @@ const renderPokemonData = (pokemonData) => {
 };
 
 const PokeCard = ({ pokemonData }) => {
+  //get the colour to apply as the background
+  const speciesColor =
+    pokemonData?.[0]?.species?.color?.name || "default-color";
   return (
-    <div className="card">
+    <div className={`card bg-${speciesColor}`}>
       <div className="card__foil"></div>
       {renderPokemonData(pokemonData)}
     </div>
