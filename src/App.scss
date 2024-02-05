@@ -26,12 +26,12 @@ body {
   transition: transform var(--duration);
 
   &__header {
-    background-color: var(--background-color);
+    //background-color: var(--background-color);
     color: var(--color-1);
-    padding: 10px;
-    text-align: center;
-    position: relative;
-    opacity: 0.9;
+    // padding: 10px; use tailwind class
+    // text-align: center; use tailwind class
+    // position: relative; use tailwind class
+    // opacity: 0.9; use tailwind class
   }
 
   &__body {

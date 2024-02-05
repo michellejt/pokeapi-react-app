@@ -83,7 +83,9 @@ const renderTypes = (types) => {
 const renderPokemonData = (pokemonData) => {
   return pokemonData?.map(({ name, sprites, types, stats, species }) => (
     <>
-      <div className="card__header">{name.toUpperCase()}</div>
+      <div className="card__header p-2.5 text-center relative opacity-90">
+        {name.toUpperCase()}
+      </div>
       <div className="card__body" key={name}>
         <img
           className="card__image"
@@ -91,7 +93,6 @@ const renderPokemonData = (pokemonData) => {
           alt={name}
         />
         <div className="card__details">
-          <p>{species?.color.name}</p>
           {renderTypes(types)}
           <p>{species.flavor_text_entries[1].flavor_text}</p>
           <div className="card__hp">
@@ -105,11 +106,52 @@ const renderPokemonData = (pokemonData) => {
 };
 
 const PokeCard = ({ pokemonData }) => {
-  //get the colour to apply as the background
   const speciesColor =
     pokemonData?.[0]?.species?.color?.name || "default-color";
+
+  const getSpeciesColorValue = (color) => {
+    switch (color) {
+      case "yellow":
+        return "#F7D02C";
+      case "red":
+        return "#C22E28";
+      case "blue":
+        return "#6390F0";
+      case "green":
+        return "#7AC74C";
+      case "light-blue":
+        return "#96D9D6";
+      case "purple":
+        return "#A33EA1";
+      case "tan":
+        return "#E2BF65";
+      case "light-purple":
+        return "#A98FF3";
+      case "pink":
+        return "#F95587";
+      case "lime":
+        return "#A6B91A";
+      case "yellowish-brown":
+        return "#B6A136";
+      case "dark-purple":
+        return "#735797";
+      case "dark-blue":
+        return "#6F35FC";
+      case "dark-brown":
+        return "#705746";
+      case "light-gray":
+        return "#B7B7CE";
+      case "light-pink":
+        return "#D685AD";
+      case "brown":
+        return "#A8A77A";
+      default:
+        return "#A8A77A";
+    }
+  };
+  const bgColorClass = getSpeciesColorValue(speciesColor);
   return (
-    <div className={`card bg-${speciesColor}`}>
+    <div className={"card"} style={{ backgroundColor: bgColorClass }}>
       <div className="card__foil"></div>
       {renderPokemonData(pokemonData)}
     </div>
