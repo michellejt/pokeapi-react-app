@@ -18,7 +18,6 @@ import RockIcon from "../assets/rock.webp";
 import SteelIcon from "../assets/steel.webp";
 import WaterIcon from "../assets/water.webp";
 
-
 // Add other type icons as needed
 const getTypeInfo = (typeName) => {
   // Map type names to corresponding icons and colors
@@ -64,9 +63,12 @@ const renderTypes = (types) => {
         const { icon: TypeIcon, color: TypeColor } = getTypeInfo(typeName);
 
         return (
-          <span key={index}>
+          <span
+            key={index}
+            className="flex justify-center items-center w-40 h-40 mr-2"
+          >
             <img
-              className="rounded-full"
+              className="rounded-full p-1.5 object-cover"
               src={TypeIcon}
               alt={typeName}
               style={{
@@ -86,52 +88,54 @@ const renderTypes = (types) => {
 let speciesColor = "default-color";
 
 const getSpeciesColorValue = (color) => {
-switch (color) {
-  case "yellow":
-    return "#F7D02C";
-  case "red":
-    return "#C22E28";
-  case "blue":
-    return "#6390F0";
-  case "green":
-    return "#7AC74C";
-  case "light-blue":
-    return "#96D9D6";
-  case "purple":
-    return "#A33EA1";
-  case "tan":
-    return "#E2BF65";
-  case "light-purple":
-    return "#A98FF3";
-  case "pink":
-    return "#F95587";
-  case "lime":
-    return "#A6B91A";
-  case "yellowish-brown":
-    return "#B6A136";
-  case "dark-purple":
-    return "#735797";
-  case "dark-blue":
-    return "#6F35FC";
-  case "dark-brown":
-    return "#705746";
-  case "light-gray":
-    return "#B7B7CE";
-  case "light-pink":
-    return "#D685AD";
-  case "brown":
-    return "#A8A77A";
-  default:
-    return "#A8A77A";
-}
+  switch (color) {
+    case "yellow":
+      return "#F7D02C";
+    case "red":
+      return "#C22E28";
+    case "blue":
+      return "#6390F0";
+    case "green":
+      return "#7AC74C";
+    case "light-blue":
+      return "#96D9D6";
+    case "purple":
+      return "#A33EA1";
+    case "tan":
+      return "#E2BF65";
+    case "light-purple":
+      return "#A98FF3";
+    case "pink":
+      return "#F95587";
+    case "lime":
+      return "#A6B91A";
+    case "yellowish-brown":
+      return "#B6A136";
+    case "dark-purple":
+      return "#735797";
+    case "dark-blue":
+      return "#6F35FC";
+    case "dark-brown":
+      return "#705746";
+    case "light-gray":
+      return "#B7B7CE";
+    case "light-pink":
+      return "#D685AD";
+    case "brown":
+      return "#A8A77A";
+    default:
+      return "#A8A77A";
+  }
 };
 let bgColorClass = getSpeciesColorValue(speciesColor);
-
 
 const renderPokemonData = (pokemonData) => {
   return pokemonData?.map(({ name, sprites, types, stats, species }) => (
     <>
-      <div className="card__header p-2.5 text-center relative opacity-90" style={{ backgroundColor: bgColorClass }}>
+      <div
+        className="card__header p-2.5 text-center relative opacity-90"
+        style={{ backgroundColor: bgColorClass }}
+      >
         {name.toUpperCase()}
       </div>
       <div className="card__body" key={name}>
@@ -143,7 +147,7 @@ const renderPokemonData = (pokemonData) => {
         <div className="card__details">
           {renderTypes(types)}
           <p>{species.flavor_text_entries[1].flavor_text}</p>
-          <div className="card__hp">
+          <div className="card__hp text-center bg-white rounded-lg px-10 m-10 mx-75 shadow-md flex justify-center">
             <strong>HP:</strong>{" "}
             {stats.find((stat) => stat.stat.name === "hp")?.base_stat}
           </div>
@@ -153,10 +157,8 @@ const renderPokemonData = (pokemonData) => {
   ));
 };
 
-
 const PokeCard = ({ pokemonData }) => {
-  speciesColor =
-    pokemonData?.[0]?.species?.color?.name || "default-color";
+  speciesColor = pokemonData?.[0]?.species?.color?.name || "default-color";
   bgColorClass = getSpeciesColorValue(speciesColor);
   return (
     <div className={"card"} style={{ backgroundColor: bgColorClass }}>

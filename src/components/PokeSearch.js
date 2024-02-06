@@ -58,8 +58,8 @@ export default function PokeSearch() {
           <div className="relative w-full">
             <input
               type="text"
-              className="bg-gray-50 block border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:border-blue-500 dark:focus:ring-blue-500 dark:placeholder-gray-400 dark:text-white focus:border-blue-500 focus:ring-blue-500 p-4 ps-10 rounded-lg text-gray-900 w-full"
-              placeholder="Find a pokemon!"
+              className="block text-blue-900 border bg-opacity-90 border-gray-300 dark:border-gray-600 dark:focus:border-blue-500 dark:focus:ring-blue-500 dark:placeholder-gray-400  focus:border-blue-500 focus:ring-blue-500 p-4 ps-10 rounded-lg w-full bg-gradient-to-tl from-cyan-100 to-lime-50"
+              placeholder="Search for a Pokemon!"
               required
               value={searchPokemons}
               onChange={handleChange}
@@ -70,13 +70,15 @@ export default function PokeSearch() {
             >
               Search
             </button>
-            <button
-              className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-              type="button"
-              onClick={onClear}
-            >
-              <ArrowPathIcon className="h-6 w-6 text-blue-500" />
-            </button>
+            <div class="flex justify-end">
+              <button
+                className="bg-transparent  text-blue-700 font-semibold hover:text-blue-900 py-2 px-4 border-transparent  rounded"
+                type="button"
+                onClick={onClear}
+              >
+                <ArrowPathIcon className="h-6 w-6 text-blue-500" />
+              </button>
+            </div>
           </div>
         </form>
       </div>

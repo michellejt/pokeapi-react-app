@@ -60,28 +60,28 @@ body {
   }
 
   &__type span {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    // display: flex; use tailwind class
+    // justify-content: center; use tailwind class
+    // align-items: center; use tailwind class
     width: 40px;
     height: 40px;
     //border-radius: 50%;//use tailwind class
-    margin-right: 2px;
+    //margin-right: 2px; //use tailwind class
   }
 
   &__type img {
-    padding: 5px;
-    object-fit: cover;
+    // padding: 5px; //use tailwind class
+    // object-fit: cover; //use tailwind class
   }
 
   &__hp {
-    text-align: center;
-    background-color: #fff;
-    border-radius: 20px; /* Adjust the value based on your preference for the curved background */
-    padding: 10px; /* Adjust the padding as needed */
-    margin: 10px auto; /* Center the element horizontally */
-    display: inline-block;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    // text-align: center;  use tailwind class
+    // background-color: #fff; use tailwind class
+    // border-radius: 20px; /* Adjust the value based on your preference for the curved background */ use tailwind class
+    // padding: 10px; /* Adjust the padding as needed */ use tailwind class
+    // margin: 10px auto; /* Center the element horizontally */ use tailwind class
+    // display: inline-block; use tailwind class
+    // box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); use tailwind class
   }
   &__foil {
     position: absolute;
