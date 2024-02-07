@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+  import React, { useState, useEffect } from "react";
 import PokeCard from "./PokeCard";
 import { ArrowPathIcon } from "@heroicons/react/24/solid";
 
 export default function PokeSearch() {
   const [searchPokemons, setSearchPokemons] = useState([]);
   const [pokemonData, setPokemonData] = useState([]);
-  const [isResultFetched, setIsResultFetched] = useState(false); // for tracking result fetching
+  //const [isResultFetched, setIsResultFetched] = useState(false); // for tracking result fetching
 
   function handleChange(event) {
     // Set the state with the value as is (including uppercase)
@@ -25,7 +25,7 @@ export default function PokeSearch() {
             // Combine data from both requests
             const combinedData = { ...pokemonData, species: speciesData };
             // Set the result fetching status to true
-            setIsResultFetched(true);
+            //setIsResultFetched(true);
             setPokemonData([combinedData]);
           })
           .catch((error) =>
