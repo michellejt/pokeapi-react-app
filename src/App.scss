@@ -52,11 +52,11 @@ body {
   }
 
   &__type {
-    display: flex;
-    justify-content: flex-end;
-    position: absolute;
-    top: 5px;
-    right: 10px;
+    //display: flex;use tailwind class
+    //justify-content: flex-end;use tailwind class
+    //position: absolute;use tailwind class
+    //top: 5px;use tailwind class
+    //right: 10px;use tailwind class
   }
 
   &__type span {

@@ -57,7 +57,7 @@ const getTypeInfo = (typeName) => {
 
 const renderTypes = (types) => {
   return (
-    <div className="card__type">
+    <div className="card__type flex justify-end absolute top-0 right-1">
       {types.map((type, index) => {
         const typeName = type?.type.name;
         const { icon: TypeIcon, color: TypeColor } = getTypeInfo(typeName);
@@ -65,6 +65,7 @@ const renderTypes = (types) => {
         return (
           <span
             key={index}
+            F
             className="flex justify-center items-center w-40 h-40 mr-2"
           >
             <img
@@ -74,7 +75,7 @@ const renderTypes = (types) => {
               style={{
                 backgroundColor: TypeColor,
                 backgroundImage: `linear-gradient(to bottom, ${TypeColor} 0%, rgba(241, 232, 232, 0.7) 50%, ${TypeColor} 100%)`,
-                boxShadow: `rgba(92, 92, 92, 0.2) -5px 5px 10px, rgba(211, 210, 210, 0.2) 5px 5px 0px`,
+                boxShadow: `rgba(0, 0, 0, 0.7) -2px 3px 10px, rgba(2, 2, 2, 0.2) 10px 5px 10px`,
               }}
             />
           </span>
@@ -144,13 +145,16 @@ const renderPokemonData = (pokemonData) => {
           src={sprites?.other["official-artwork"].front_default}
           alt={name}
         />
-        <div className="card__details">
+        <div
+          className="card__details"
+          style={{ backgroundColor: bgColorClass }}
+        >
           {renderTypes(types)}
-          <p>{species.flavor_text_entries[1].flavor_text}</p>
-          <div className="card__hp text-center bg-white rounded-lg px-10 m-10 mx-75 shadow-md flex justify-center">
-            <strong>HP:</strong>{" "}
-            {stats.find((stat) => stat.stat.name === "hp")?.base_stat}
-          </div>
+          <p className="p-2">{species.flavor_text_entries[2].flavor_text}</p>
+        </div>
+        <div className="card__hp text-center bg-white rounded-lg px-10 mx-24 -mt-2 shadow-md flex justify-center">
+          <strong>HP:</strong>{" "}
+          {stats.find((stat) => stat.stat.name === "hp")?.base_stat}
         </div>
       </div>
     </>

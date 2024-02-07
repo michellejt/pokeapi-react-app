@@ -5,6 +5,7 @@ import { ArrowPathIcon } from "@heroicons/react/24/solid";
 export default function PokeSearch() {
   const [searchPokemons, setSearchPokemons] = useState([]);
   const [pokemonData, setPokemonData] = useState([]);
+  const [isResultFetched, setIsResultFetched] = useState(false); // for tracking result fetching
 
   function handleChange(event) {
     // Set the state with the value as is (including uppercase)
@@ -23,6 +24,8 @@ export default function PokeSearch() {
           .then((speciesData) => {
             // Combine data from both requests
             const combinedData = { ...pokemonData, species: speciesData };
+            // Set the result fetching status to true
+            setIsResultFetched(true);
             setPokemonData([combinedData]);
           })
           .catch((error) =>
@@ -70,15 +73,18 @@ export default function PokeSearch() {
             >
               Search
             </button>
-            <div class="flex justify-end">
+            {/* To do: style this first to move the clear button, then conditionally render */}
+            {/* {isResultFetched && ( */}
+            <div className="flex justify-end">
               <button
-                className="bg-transparent  text-blue-700 font-semibold hover:text-blue-900 py-2 px-4 border-transparent  rounded"
+                className="bg-transparent text-blue-700 font-semibold hover:text-blue-900 py-2 px-4 border-transparent rounded"
                 type="button"
                 onClick={onClear}
               >
                 <ArrowPathIcon className="h-6 w-6 text-blue-500" />
               </button>
             </div>
+            {/* )} */}
           </div>
         </form>
       </div>
