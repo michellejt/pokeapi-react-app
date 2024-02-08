@@ -149,7 +149,7 @@ const renderPokemonData = (pokemonData) => {
           style={{ backgroundColor: bgColorClass }}
         >
           {renderTypes(types)}
-          <p className="p-2">{species.flavor_text_entries[2].flavor_text}</p>
+          <p className="p-2">{pokemonData[0]?.englishFlavorText}</p>
         </div>
         <div className="card__hp text-center bg-white rounded-lg px-10 mx-24 -mt-2 shadow-md flex justify-center">
           <strong>HP:</strong>{" "}

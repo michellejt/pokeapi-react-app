@@ -22,11 +22,30 @@ export default function PokeSearch() {
         fetch(speciesUrl)
           .then((res) => res.json())
           .then((speciesData) => {
-            // Combine data from both requests
-            const combinedData = { ...pokemonData, species: speciesData };
+            //get the flavor text entries
+            const flavorText = speciesData.flavor_text_entries;
+            // We then filter the array of flavor texts only for the ones that have the language `en`
+            const englishFlavorText = flavorText.filter(
+              (element) => element.language.name === "en"
+            );
+            console.log("eng", englishFlavorText);
+
+            // Access a specific entry, for example, the first one
+            const firstEnglishFlavorText =
+              englishFlavorText[0]?.flavor_text || "";
+
+            console.log("first eng", firstEnglishFlavorText);
+
+            // Combine data from all requests
+            const combinedData = {
+              ...pokemonData,
+              species: speciesData,
+              englishFlavorText: firstEnglishFlavorText,
+            };
             // Set the result fetching status to true
             setIsResultFetched(true);
             setPokemonData([combinedData]);
+            console.log("combo", combinedData);
           })
           .catch((error) =>
             console.error("Error fetching species data", error)
@@ -42,7 +61,7 @@ export default function PokeSearch() {
 
   // Use useEffect to log pokemonData whenever it changes
   useEffect(() => {
-    console.log("data", pokemonData);
+    //.log("data", pokemonData);
   }, [pokemonData]);
 
   return (
