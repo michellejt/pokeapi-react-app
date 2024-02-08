@@ -65,7 +65,6 @@ const renderTypes = (types) => {
         return (
           <span
             key={index}
-            F
             className="flex justify-center items-center w-40 h-40 mr-2"
           >
             <img
@@ -131,8 +130,8 @@ const getSpeciesColorValue = (color) => {
 let bgColorClass = getSpeciesColorValue(speciesColor);
 
 const renderPokemonData = (pokemonData) => {
-  return pokemonData?.map(({ name, sprites, types, stats, species }) => (
-    <>
+  return pokemonData?.map(({ id, name, sprites, types, stats, species }) => (
+    <div key={id}>
       <div
         className="card__header p-2.5 text-center relative opacity-90"
         style={{ backgroundColor: bgColorClass }}
@@ -157,7 +156,7 @@ const renderPokemonData = (pokemonData) => {
           {stats.find((stat) => stat.stat.name === "hp")?.base_stat}
         </div>
       </div>
-    </>
+    </div>
   ));
 };
 

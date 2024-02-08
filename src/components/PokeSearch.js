@@ -1,11 +1,11 @@
-  import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import PokeCard from "./PokeCard";
 import { ArrowPathIcon } from "@heroicons/react/24/solid";
 
 export default function PokeSearch() {
   const [searchPokemons, setSearchPokemons] = useState([]);
   const [pokemonData, setPokemonData] = useState([]);
-  //const [isResultFetched, setIsResultFetched] = useState(false); // for tracking result fetching
+  const [isResultFetched, setIsResultFetched] = useState(false); // for tracking result fetching
 
   function handleChange(event) {
     // Set the state with the value as is (including uppercase)
@@ -25,7 +25,7 @@ export default function PokeSearch() {
             // Combine data from both requests
             const combinedData = { ...pokemonData, species: speciesData };
             // Set the result fetching status to true
-            //setIsResultFetched(true);
+            setIsResultFetched(true);
             setPokemonData([combinedData]);
           })
           .catch((error) =>
@@ -53,7 +53,7 @@ export default function PokeSearch() {
       >
         <form className="w-3/4" onSubmit={handleSubmit}>
           <label
-            for="search"
+            htmlFor="search"
             className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
           >
             Search
@@ -68,23 +68,22 @@ export default function PokeSearch() {
               onChange={handleChange}
             ></input>
             <button
-              className="text-white absolute end-2.5 bottom-[3.25rem] bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="text-white absolute end-2.5 bottom-[0.7rem] bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               type="submit"
             >
               Search
             </button>
-            {/* To do: style this first to move the clear button, then conditionally render */}
-            {/* {isResultFetched && ( */}
-            <div className="flex justify-end">
-              <button
-                className="bg-transparent text-blue-700 font-semibold hover:text-blue-900 py-2 px-4 border-transparent rounded"
-                type="button"
-                onClick={onClear}
-              >
-                <ArrowPathIcon className="h-6 w-6 text-blue-500" />
-              </button>
-            </div>
-            {/* )} */}
+            {isResultFetched && (
+              <div className="flex justify-end absolute right-[-50px] top-3">
+                <button
+                  className="bg-transparent text-blue-700 font-semibold hover:text-blue-900 py-2 px-4 border-transparent rounded"
+                  type="button"
+                  onClick={onClear}
+                >
+                  <ArrowPathIcon className="h-6 w-6 text-blue-500" />
+                </button>
+              </div>
+            )}
           </div>
         </form>
       </div>
