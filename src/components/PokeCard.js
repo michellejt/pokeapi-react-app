@@ -123,6 +123,12 @@ const getSpeciesColorValue = (color) => {
       return "#D685AD";
     case "brown":
       return "#A8A77A";
+    case "white":
+      return "#96D9D6";
+    case "gray":
+      return "#C22E28";
+    case "black":
+      return "#705746";
     default:
       return "#A8A77A";
   }
@@ -149,7 +155,7 @@ const renderPokemonData = (pokemonData) => {
           style={{ backgroundColor: bgColorClass }}
         >
           {renderTypes(types)}
-          <p className="p-2">{pokemonData[0]?.englishFlavorText}</p>
+          <p className="p-2">{pokemonData[0]?.randomEnglishFlavorText}</p>
         </div>
         <div className="card__hp text-center bg-white rounded-lg px-10 mx-24 -mt-2 shadow-md flex justify-center">
           <strong>HP:</strong>{" "}

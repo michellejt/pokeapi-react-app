@@ -30,17 +30,26 @@ export default function PokeSearch() {
             );
             console.log("eng", englishFlavorText);
 
-            // Access a specific entry, for example, the first one
+            /*             // Access a specific entry, for example, the first one
             const firstEnglishFlavorText =
-              englishFlavorText[0]?.flavor_text || "";
+              englishFlavorText[0]?.flavor_text || ""; */
 
-            console.log("first eng", firstEnglishFlavorText);
+            // Get a random index within the valid range of indices in the array
+            const randomIndex = Math.floor(
+              Math.random() * englishFlavorText.length
+            );
+
+            // Access the flavor text at the random index
+            const randomEnglishFlavorText =
+              englishFlavorText[randomIndex]?.flavor_text || "";
+
+            console.log("first eng", randomEnglishFlavorText);
 
             // Combine data from all requests
             const combinedData = {
               ...pokemonData,
               species: speciesData,
-              englishFlavorText: firstEnglishFlavorText,
+              randomEnglishFlavorText: randomEnglishFlavorText,
             };
             // Set the result fetching status to true
             setIsResultFetched(true);
