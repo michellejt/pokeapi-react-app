@@ -12,26 +12,15 @@ body {
 
 .card {
   width: 300px;
-  // background: radial-gradient(
-  //   circle,
-  //    rgba(255, 255, 255, 1) 0%,
-  ///    var(--background-color) 100%
-  //  );
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   overflow: hidden;
   position: relative;
-
   transform: rotatey(0deg);
   transition: transform var(--duration);
 
   &__header {
-    //background-color: var(--background-color);
     color: var(--color-1);
-    // padding: 10px; use tailwind class
-    // text-align: center; use tailwind class
-    // position: relative; use tailwind class
-    // opacity: 0.9; use tailwind class
   }
 
   &__body {
@@ -52,36 +41,20 @@ body {
   }
 
   &__type {
-    //display: flex;use tailwind class
-    //justify-content: flex-end;use tailwind class
-    //position: absolute;use tailwind class
-    //top: 5px;use tailwind class
-    //right: 10px;use tailwind class
+
   }
 
   &__type span {
-    // display: flex; use tailwind class
-    // justify-content: center; use tailwind class
-    // align-items: center; use tailwind class
     width: 40px;
     height: 40px;
-    //border-radius: 50%;//use tailwind class
-    //margin-right: 2px; //use tailwind class
   }
 
   &__type img {
-    // padding: 5px; //use tailwind class
-    // object-fit: cover; //use tailwind class
+
   }
 
   &__hp {
-    // text-align: center;  use tailwind class
-    // background-color: #fff; use tailwind class
-    // border-radius: 20px; /* Adjust the value based on your preference for the curved background */ use tailwind class
-    // padding: 10px; /* Adjust the padding as needed */ use tailwind class
-    // margin: 10px auto; /* Center the element horizontally */ use tailwind class
-    // display: inline-block; use tailwind class
-    // box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); use tailwind class
+
   }
   &__foil {
     position: absolute;
@@ -118,7 +91,6 @@ body {
         #ff39e9
       );
       transition: translate var(--duration);
-      // translate: -50% -50%;
     }
   }
 
