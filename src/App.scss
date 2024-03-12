@@ -40,6 +40,19 @@ body {
     color: var(--color-2);
   }
 
+  &__spotlight {
+    position: absolute;
+    width: 20em;
+    height: 20em;
+    background: radial-gradient(50% 50% at 50% 50%, white 25%, transparent);
+    border-radius: 50%;
+    top: var(--spotlight-y, 50%);
+    left: var(--spotlight-x, 50%);
+    translate: -50% -50%;
+    mix-blend-mode: overlay;
+    opacity: 0.75;
+  }
+  
   &__type {
 
   }

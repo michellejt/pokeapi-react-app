@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import BugIcon from "../assets/bug.webp";
 import DarkIcon from "../assets/dark.webp";
 import DragonIcon from "../assets/dragon.webp";
@@ -162,6 +162,7 @@ const renderPokemonData = (pokemonData) => {
           {stats.find((stat) => stat.stat.name === "hp")?.base_stat}
         </div>
       </div>
+      <div className="card__spotlight"></div>
     </div>
   ));
 };
@@ -169,6 +170,27 @@ const renderPokemonData = (pokemonData) => {
 const PokeCard = ({ pokemonData }) => {
   speciesColor = pokemonData?.[0]?.species?.color?.name || "default-color";
   bgColorClass = getSpeciesColorValue(speciesColor);
+
+  useEffect(() => {
+    const card = document.querySelector(".card");
+
+    function handleCardHover(e) {
+      const { clientX, clientY } = e;
+      const rect = card.getBoundingClientRect();
+      const spotX = ((clientX - rect.left) * 100) / rect.width;
+      const spotY = ((clientY - rect.top) * 100) / rect.height;
+
+      card.style.setProperty("--spotlight-x", spotX + "%");
+      card.style.setProperty("--spotlight-y", spotY + "%");
+    }
+
+    card.addEventListener("mousemove", handleCardHover);
+
+    return () => {
+      card.removeEventListener("mousemove", handleCardHover);
+    };
+  }, []); 
+
   return (
     <div className={"card"} style={{ backgroundColor: bgColorClass }}>
       <div className="card__foil"></div>
